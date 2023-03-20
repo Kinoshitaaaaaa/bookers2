@@ -2,33 +2,7 @@
   <main>
     <p id="notice"></p>
     <div class="container px-5 px-sm-0">
-      <div class="row">
-        <div class="col-md-3">
-          <h2>User Info</h2>
-          <%= image_tag @user.get_profile_image(100,100) %>
-          <table class="table">
-            <tbody>
-              <tr>
-                <th>name</th>
-                <th><%= @user.name %></th>
-              </tr>
-              <tr>introduction</tr>
-              <tr><%= @user.introduction %></tr>
-            </tbody>
-          </table>
-          <div class="row">
-            <%=link_to "edit" "edit_user_path(resource)",class: "btn btn-outline-secondary btn-block" %>
-          </div>
-          <h2 class="mt-3">New book</h2>
-           <%= form_with model: @book do |f| %>
-            <h4>Title</h4>
-             <%= f.text_field :title %>
-            <h4>Opinion</h4>
-             <%= f.text_area :body %>
-            <%= f.submit 'Create Book' %>
-           <% end %>
-        </div>
-      </div>
+     <%= render 'create', books: @books %>
     </div>
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
@@ -42,10 +16,12 @@
           </tr>
         </thead>
         <tbody>
-         <% @books.each do |book| %>
-          <tr><%= book.title %></tr>
-          <tr><%= book.body %></tr>
-         <% end %>
+          <tr>
+           <% @books.each do |book| %>
+            <td><%= book.title %></td>
+            <td><%= book.body %></td>
+           <% end %>
+          </tr>
         </tbody>
       </table>
     </div>

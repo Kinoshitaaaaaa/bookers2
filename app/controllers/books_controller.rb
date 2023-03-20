@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(post_image_params)
+    @book = Book.new(book_params)
     @book.user_id = current_user.id
 
     if @book.save
@@ -15,11 +15,32 @@ class BooksController < ApplicationController
   end
 
   def show
+    @book=Book.find(params[:id])
   end
 
   def edit
+    @book=Book.find(params[:id])
   end
 
   def index
+    @books=Book.all
+  end
+
+  def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+    redirect_to book_path
+  end
+
+  def update
+    @book = Book.find(params[:id])
+    @book.update(book_params)
+    redirect_to book_path(@book.id)
+  end
+
+  private
+
+  def book_params
+    params.require(:book).permit(:title,:body,:imaage)
   end
 end
