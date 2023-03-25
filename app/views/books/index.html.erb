@@ -2,7 +2,7 @@
   <main>
     <p id="notice"></p>
     <div class="container px-5 px-sm-0">
-     <%= render "create",books: @books %>
+     <%= render "create",user: @user,book: @book %>
     </div>
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
@@ -18,8 +18,13 @@
         <tbody>
           <tr>
            <% @books.each do |book| %>
-            <td><%= book.title %></td>
-            <td><%= book.body %></td>
+            <% link to user_path(@user) do %>
+             <td><%= image_tag user.get_profile_image(80,80) %></td>
+            <% end %>
+            <% link to book_path(@book) do %>
+             <td><%= book.title %></td>
+            <% end %>
+             <td><%= book.body %></td>
            <% end %>
           </tr>
         </tbody>
