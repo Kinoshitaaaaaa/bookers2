@@ -2,26 +2,28 @@
   <main>
     <p id="notice"></p>
     <div class="container px-5 px-sm-0">
+     <div class="row">
      <%= render 'create', books: @books %>
-    </div>
+
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
       <table class="table">
         <tbody>
          <tr>
-          
-           <% link_to user_path(@user) do %>
-            <td><%= image_tag @user.get_profile_image(100,100) %>
-            <br><%= @user.name %></td>
-           <% end %>
+            <td>
+              <%= link_to user_path(@user) do %>
+               <%= image_tag @user.get_profile_image(100,100) %>
+                <br><%= @user.name %></td>
+              <% end %>
             <td><%= @book.title %></td>
             <td><%= @book.body %></td>
            <% if @book.user == current_user %>
             <td><%= link_to "Edit", edit_book_path(@book),class: "btn btn-sm btn-success" %></td>
             <td><%= link_to "Destroy", book_path(@book), method: :delete, class: "btn btn-sm btn-danger" %></td>
            <% end %>
-         
          </tr>
         </tbody>
       </table>
+     </div>
     </div>
+   </div>
