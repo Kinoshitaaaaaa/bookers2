@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @books = @user.books
-    @user=current_user
     @book=Book.new
 
   end
@@ -25,9 +24,9 @@ class UsersController < ApplicationController
   def edit
      @user=User.find(params[:id])
     if @user == current_user
-      render "edit"
+
     else
-      redirect_to user_path(@user.id)
+      render:show
     end
   end
 
