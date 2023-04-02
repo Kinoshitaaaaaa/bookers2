@@ -23,10 +23,11 @@ class UsersController < ApplicationController
 
   def edit
      @user=User.find(params[:id])
+     @books=@user.books
     if @user == current_user
 
     else
-      render:show
+       render :show
     end
   end
 
@@ -43,5 +44,6 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name,:introduction,:profile_image)
   end
+
 
 end
