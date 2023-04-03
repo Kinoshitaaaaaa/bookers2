@@ -25,9 +25,9 @@ class UsersController < ApplicationController
      @user=User.find(params[:id])
      @books=@user.books
     if @user == current_user
-
+       render :edit
     else
-       render :show
+       redirect_to user_path(current_user)
     end
   end
 
